@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Research Datasets & Artifacts
+Merged_Tea_Leaf_Dataset/
+Baseline/
+Severe_1_100/
+Extreme_1_500/
+*.h5
+*.keras
+models/
+results/

@@ -224,7 +224,11 @@ Merged_Tea_Leaf_Dataset/
 Baseline/
 Severe_1_100/
 Extreme_1_500/
+Test_Set/
 *.h5
 *.keras
 models/
 results/
+
+# Future Assignment Deliverables (Assignment 4 & 5)
+IEEE_Access_Paper_Draft.md

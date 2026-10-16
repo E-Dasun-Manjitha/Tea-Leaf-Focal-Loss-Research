@@ -167,7 +167,6 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 ## 🛠️ Repository Structure
 ```
 ├── milestone2_deliverables/        # Milestone 2 submission package
-│   ├── Milestone_2_Document.md    # Complete 6-section brief for single PDF submission
 │   ├── architecture_diagram.svg    # Standalone high-resolution vector SVG flowchart
 │   ├── architecture_diagram.md     # Mermaid vector flowchart
 │   ├── mathematical_evaluation_plan.md # Metric derivations & 5-fold CV protocol
@@ -177,6 +176,7 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 ├── gradcam_explainability.py       # Grad-CAM spatial attention visualizer (tf-keras-vis)
 ├── test_prediction.py              # Interactive single-image model prediction test script
 ├── requirements.txt                # Python environment dependencies
+├── LICENSE                         # MIT Open-Source License
 ├── .gitignore                      # Version control ignore rules (data/weights/drafts)
 └── README.md                       # Master repository documentation
 ```
@@ -218,20 +218,26 @@ python test_prediction.py "Test_Set/Diseased/20211205_160445.jpg"
 
 ---
 
-## 📚 Revised Bibliography (15 Peer-Reviewed Sources)
+## 🧠 Deep Learning Architecture & Model Specifications
 
-1. **[IEEE Xplore]** X. Deng and C. Photong, "Evaluation of Tea Leaf Disease Identification Based on Convolutional Neural Networks VGG16, ResNet50, and DenseNet169 Image Recognitions," in *2024 12th iEECON*, 2024.
-2. **[IEEE Xplore]** M. S. H. Shovon et al., "PlantDet: A Robust Multi-Model Ensemble Method Based on Deep Learning For Plant Disease Detection," *IEEE Access*, vol. 11, 2023.
-3. **[IEEE Xplore]** A. Oad et al., "Plant Leaf Disease Detection Using Ensemble Learning and Explainable AI," *IEEE Access*, vol. 12, 2024.
-4. **[IEEE Xplore]** M. Raj et al., "CNN and Random Forest Hybrid Model for Tea Leaf Diseases Multiclassification," in *2024 AUTOCOM*, 2024.
-5. **[IEEE Xplore]** T.-Y. Lin et al., "Focal Loss for Dense Object Detection," *IEEE TPAMI*, vol. 42, no. 2, 2020.
-6. **[ACM DL]** D. Singh et al., "PlantDoc: A Dataset for Visual Plant Disease Detection," in *Proc. 7th ACM IKDD CoDS / 25th COMAD*, 2020.
-7. **[ACM DL]** D. Zhai et al., "Rectified Meta-learning from Noisy Labels for Robust Image-based Plant Disease Classification," *ACM TOMM*, vol. 18, 2022.
-8. **[ACM DL]** G. Fenu and F. M. Malloci, "An Application of Machine Learning Technique in Forecasting Crop Disease," in *Proc. 2019 3rd ACM Big Data Res.*, 2019.
-9. **[Springer]** A. Chug et al., "A novel framework for image-based plant disease detection using hybrid deep learning approach," *Soft Computing*, vol. 27, 2023.
-10. **[Springer]** P. Bhuyan et al., "Res4net-CBAM: a deep cnn with convolution block attention module for tea leaf disease diagnosis," *Multimed Tools Appl*, vol. 83, 2023.
-11. **[Springer]** S. Mukhopadhyay et al., "Tea leaf disease detection using deep learning with transfer learning approaches," *Applied Intelligence*, vol. 52, 2022.
-12. **[Springer]** H. Wang et al., "Identification of tea leaf diseases based on dual-pathway convolutional neural network with channel attention," *J Plant Pathol*, vol. 105, 2023.
-13. **[Nature / Sci Rep]** Md. J. A. Soeb et al., "Tea leaf disease detection and identification based on YOLOv7 (YOLO-T)," *Scientific Reports*, vol. 13, 2023.
-14. **[PLoS One]** J. Yang et al., "Lightweight wavelet-CNN tea leaf disease detection," *PLoS One*, vol. 20, 2025.
-15. **[Hindawi / Wiley]** J. A. Pandian et al., "Grey Blight Disease Detection on Tea Leaves Using Improved Deep Convolutional Neural Network," *Comput Intell Neurosci*, 2023.
+| Specification Parameter | Configuration | Justification & Literature Grounding |
+| :--- | :--- | :--- |
+| **Backbone Architecture** | **DenseNet121** (Huang et al.) | Dense connectivity ($x_\ell = H_\ell([x_0, \dots, x_{\ell-1}])$) maximizes multi-scale feature reuse, mitigating vanishing gradients under extreme data starvation [1]. |
+| **Input Tensor Shape** | $224 \times 224 \times 3$ (RGB) | Standardized resolution for ImageNet transfer learning weights with optimized CPU/GPU throughput. |
+| **Parameter Efficiency** | ~7.03 Million Parameters | Highly parameter-efficient compared to ResNet50 (25.6M) and VGG16 (138M), preventing catastrophic memorization of noise. |
+| **Penultimate Conv Layer** | `conv5_block16_concat` | Concatenation of Dense Block 4 feature maps; designated target layer for `tf-keras-vis` Grad-CAM gradient backpropagation. |
+| **Pooling Layer** | `GlobalAveragePooling2D` | Reduces $(7 \times 7 \times 1024)$ spatial tensors directly to a 1024-dimensional feature vector without introducing dense weight bloat. |
+| **Regularization** | Dropout ($p = 0.2$) | Regularizes the dense bottleneck to suppress co-adaptation of features during minority fine-tuning. |
+| **Classification Head** | Dense (2 units, Softmax) | Outputs mutually exclusive posterior probabilities: $P(\text{Diseased})$ vs. $P(\text{Healthy})$. |
+| **Optimization Regimes** | Categorical Cross-Entropy vs. Focal Loss | Direct ablation testing standard unweighted loss vs. dynamically modulated loss ($\gamma = 2.0, \alpha = 0.25$) [7]. |
+| **Optimizer & Learning Rate**| Adam ($\text{lr} = 1 \times 10^{-4}$) | First- and second-order adaptive moment estimation for stable convergence across asymmetric loss terrains. |
+
+---
+
+## 📚 Peer-Reviewed Literature & Methodology Documentation
+
+Full mathematical derivations, 5-fold stratified cross-validation plans, and architectural justifications are documented in:
+- [`milestone2_deliverables/mathematical_evaluation_plan.md`](milestone2_deliverables/mathematical_evaluation_plan.md)
+- [`milestone2_deliverables/architecture_diagram.md`](milestone2_deliverables/architecture_diagram.md)
+
+*(The formal 6-section Milestone 2 report and 15-source annotated bibliography are submitted as a single PDF directly via the Horizon Campus LMS portal).*

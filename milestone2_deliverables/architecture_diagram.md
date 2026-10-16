@@ -71,3 +71,18 @@ flowchart TD
 5. **Dual Deliverable Output:**
    - **Macro F1-Score Metrics:** Reveals the exact numeric collapse threshold where minority class recognition fails.
    - **Grad-CAM Attention Maps:** Visual evidence demonstrating the shift of network attention from pathological foliar lesions to spurious background noise.
+
+---
+
+### Architectural Design Justifications (Literature Grounded)
+
+In accordance with Module IT41043 Milestone 2 specifications, all major architectural and algorithmic decisions are grounded in peer-reviewed literature:
+
+| Component / Choice | Selected Strategy | Rejected Alternative | Literature Grounding & Justification |
+| :--- | :--- | :--- | :--- |
+| **Deep Feature Backbone** | **DenseNet121** | ResNet50, VGG16 | Huang et al. (CVPR 2017) demonstrated that direct layer concatenation ($x_\ell = H_\ell([x_0, \dots, x_{\ell-1}])$) maximizes multi-scale feature reuse with only ~7.03M parameters. In contrast, VGG16 (138M) and ResNet50 (25.6M) suffer from high parameter bloat, leading to catastrophic overfitting on tiny minority samples (e.g., 2 images at 1:500). |
+| **Optimization Algorithm** | **Adam ($\eta = 10^{-4}$)** | Standard SGD, RMSprop | Kingma & Ba (ICLR 2015) showed that adaptive first and second moment estimation ($m_t, v_t$) maintains stable parameter updates across highly distorted, asymmetric loss gradients induced by extreme class imbalance. |
+| **Data Partitioning Protocol** | **Stratified 5-Fold Cross-Validation** | 70/30 Holdout Split | Kohavi (IJCAI 1995) established that standard holdout validation exhibits high variance on ultra-rare minority classes. Stratification strictly enforces that the 1:100 and 1:500 imbalance ratios are preserved identically across all 5 folds. |
+| **Stress-Testing Loss Function** | **Focal Loss ($\gamma=2.0, \alpha=0.25$)** | Weighted Cross-Entropy | Lin et al. (ICCV 2017) formulated Focal Loss to dynamically scale the loss down for easily classified background foliage via $(1 - p_t)^\gamma$, directing model optimization exclusively toward difficult foliar lesions. |
+| **Explainable AI (XAI) Probe** | **Grad-CAM (`tf-keras-vis`)** | LIME, Saliency Maps | Selvaraju et al. (ICCV 2017) proved Grad-CAM preserves class-discriminative spatial activations without requiring model re-architecting. Applying it to the penultimate layer (`conv5_block16_concat`) captures rich spatial-semantic lesion boundaries before spatial collapse in the pooling layer. |
+

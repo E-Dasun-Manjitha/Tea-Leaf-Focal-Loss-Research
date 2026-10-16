@@ -149,15 +149,19 @@ def generate_comparison_gradcam():
 
     # Save outputs
     local_output_path = os.path.join(RESULTS_DIR, "gradcam_comparison.png")
-    artifact_output_path = os.path.join(ARTIFACTS_DIR, "gradcam_comparison.png")
-
     fig.savefig(local_output_path, bbox_inches="tight")
-    fig.savefig(artifact_output_path, bbox_inches="tight")
-    plt.close(fig)
-
     print(f"Grad-CAM Heatmap comparison successfully saved to:")
-    print(f"  -> Local: {local_output_path}")
-    print(f"  -> Artifact: {artifact_output_path}")
+    print(f"  -> Local Result: {local_output_path}")
+
+    # Save to optional IDE artifact directory if present
+    if os.path.isdir(ARTIFACTS_DIR):
+        try:
+            artifact_output_path = os.path.join(ARTIFACTS_DIR, "gradcam_comparison.png")
+            fig.savefig(artifact_output_path, bbox_inches="tight")
+            print(f"  -> IDE Artifact: {artifact_output_path}")
+        except Exception:
+            pass
+    plt.close(fig)
     print("=" * 70)
 
 if __name__ == "__main__":

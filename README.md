@@ -8,7 +8,7 @@
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 - **Institution:** Horizon Campus, Faculty of Information Technology  
 - **Degree Program:** BSc (Hons) in Information Technology / Intelligent Systems  
 - **Module:** IT41043 — Intelligent Systems (Academic Year 2026, 3rd Year, 2nd Semester)  
@@ -17,7 +17,7 @@
 
 ---
 
-## 👥 Research Team & Contributions
+## Research Team and Contributions
 | Student Researcher | Student ID | Primary Technical Domain & Repository Contributions |
 | :--- | :---: | :--- |
 | **E. Dasun Manjitha** | `ITBIN-2313-0062` | Master dataset curation, automated synthetic data starvation engineering (`data_starvation.py`), Focal Loss stress-testing optimization (`train_dense_net.py`), and mathematical evaluation metric formulation. |
@@ -25,7 +25,7 @@
 
 ---
 
-## 📅 Project State and Milestones
+## Project Milestones and Progress Tracking
 
 | Milestone | Deliverable Description | Status | Verification & Deliverables |
 | :---: | :--- | :---: | :--- |
@@ -37,7 +37,7 @@
 
 ---
 
-## 🔬 Research Motivation and Objectives
+## Research Motivation and Problem Formulation
 
 ### 1. Agronomic & Economic Context
 Tea (*Camellia sinensis*) is a foundational pillar of the Sri Lankan export economy. Foliar pathogens—including *Algal Leaf Spot*, *Brown Blight*, *Gray Blight*, *Helopeltis*, *Red Spider Mite*, and *Green Mirid Bug*—induce severe tissue necrosis and crop yield losses if not diagnosed early. While modern Convolutional Neural Networks (CNNs) show stellar diagnostic accuracy on balanced benchmarks, real commercial tea plantations present extreme, sporadic data starvation where healthy foliage vastly outnumbers localized diseased leaves by ratios exceeding 1:100 to 1:500.
@@ -52,7 +52,7 @@ Tea (*Camellia sinensis*) is a foundational pillar of the Sri Lankan export econ
 
 ---
 
-## 🏛️ System Architecture Pipeline
+## System Architecture Pipeline
 
 The complete end-to-end research methodology is visually modeled below:
 
@@ -107,7 +107,7 @@ flowchart TD
 
 ---
 
-## ⚙️ END-TO-END PIPELINE STAGES
+## End-to-End Pipeline Stages
 
 ### Stage 1: Controlled Data Starvation Ingestion
 The master local repository contains **10,143 high-resolution images** across 7 classes. To isolate the algorithmic collapse threshold:
@@ -136,7 +136,7 @@ This design maximizes feature reuse, mitigates the vanishing gradient problem, a
 
 ---
 
-## 📊 Model Benchmarking & Stress-Testing Results
+## Experimental Results and Empirical Stress-Testing
 
 The pipeline was executed across all six configurations on the independent balanced test partition (200 unseen images):
 
@@ -153,7 +153,7 @@ The pipeline was executed across all six configurations on the independent balan
 
 ---
 
-## 🔍 Explainable AI (Grad-CAM) Visual Proof
+## Explainable AI (Grad-CAM) Attention Analysis
 
 Using `tf-keras-vis`, we visually map how the network's internal attention breaks down under extreme starvation:
 
@@ -164,7 +164,7 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 
 ---
 
-## 🛠️ Repository Structure
+## Repository Structure
 ```
 ├── milestone2_deliverables/        # Milestone 2 submission package
 │   ├── architecture_diagram.svg    # Standalone high-resolution vector SVG flowchart
@@ -183,7 +183,7 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 
 ---
 
-## 🚀 Getting Started & Reproducibility Guide
+## Environment Setup and Execution Guide
 
 ### 1. Environment Setup
 ```bash
@@ -218,7 +218,7 @@ python test_prediction.py "Test_Set/Diseased/20211205_160445.jpg"
 
 ---
 
-## 🧠 Deep Learning Architecture & Model Specifications
+## Deep Learning Architecture and Theoretical Grounding
 
 | Specification Parameter | Configuration | Justification & Literature Grounding |
 | :--- | :--- | :--- |
@@ -234,10 +234,11 @@ python test_prediction.py "Test_Set/Diseased/20211205_160445.jpg"
 
 ---
 
-## 📚 Peer-Reviewed Literature & Methodology Documentation
+## Methodology Documentation and References
 
 Full mathematical derivations, 5-fold stratified cross-validation plans, and architectural justifications are documented in:
 - [`milestone2_deliverables/mathematical_evaluation_plan.md`](milestone2_deliverables/mathematical_evaluation_plan.md)
 - [`milestone2_deliverables/architecture_diagram.md`](milestone2_deliverables/architecture_diagram.md)
 
 *(The formal 6-section Milestone 2 report and 15-source annotated bibliography are submitted as a single PDF directly via the Horizon Campus LMS portal).*
+

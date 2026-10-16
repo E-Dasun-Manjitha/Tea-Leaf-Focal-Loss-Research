@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 700" width="100%" height="100%" style="background:#0b0f19; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="modelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#312e81" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="cceGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#450a0a" />
+      <stop offset="100%" stop-color="#1c0404" />
+    </linearGradient>
+    <linearGradient id="focalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="outGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#172554" />
+      <stop offset="100%" stop-color="#081026" />
+    </linearGradient>
+
+    <!-- Markers -->
+    <marker id="arrowSky" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+    </marker>
+    <marker id="arrowEmerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#60a5fa" />
+    </marker>
+
+    <!-- Shadow Filter -->
+    <filter id="boxShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Title & Subtitle -->
+  <text x="650" y="45" text-anchor="middle" fill="url(#headerGrad)" font-size="22" font-weight="800" letter-spacing="1">
+    RESEARCH SYSTEM ARCHITECTURE &amp; METHODOLOGY
+  </text>
+  <text x="650" y="70" text-anchor="middle" fill="#94a3b8" font-size="13" font-weight="500">
+    Visually Mapping the Algorithmic Breaking Point: DenseNet121 Stress Testing Under Extreme Starvation
+  </text>
+
+  <!-- ==================== COLUMN 1: DATA INGESTION ==================== -->
+  <rect x="40" y="100" width="220" height="560" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+  <rect x="40" y="100" width="220" height="42" rx="14" fill="#1e293b" />
+  <text x="150" y="126" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="700">1. INPUT DATASETS</text>
+
+  <!-- Baseline Card -->
+  <rect x="55" y="160" width="190" height="135" rx="10" fill="url(#inputGrad)" stroke="#38bdf8" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="150" y="185" text-anchor="middle" fill="#f8fafc" font-size="13" font-weight="700">Baseline Dataset</text>
+  <text x="150" y="205" text-anchor="middle" fill="#94a3b8" font-size="11">Natural Imbalance</text>
+  <path d="M 75 215 L 225 215" stroke="#334155" stroke-width="1" />
+  <text x="150" y="235" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">Ratio: 1 : 1</text>
+  <text x="150" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">1000 Healthy Leaves</text>
+  <text x="150" y="275" text-anchor="middle" fill="#cbd5e1" font-size="10">995 Diseased Leaves</text>
+
+  <!-- Severe Card -->
+  <rect x="55" y="320" width="190" height="135" rx="10" fill="url(#inputGrad)" stroke="#f59e0b" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="150" y="345" text-anchor="middle" fill="#f8fafc" font-size="13" font-weight="700">Severe Starvation</text>
+  <text x="150" y="365" text-anchor="middle" fill="#94a3b8" font-size="11">Synthetic Depletion</text>
+  <path d="M 75 375 L 225 375" stroke="#334155" stroke-width="1" />
+  <text x="150" y="395" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="600">Ratio: 1 : 100</text>
+  <text x="150" y="415" text-anchor="middle" fill="#cbd5e1" font-size="10">1000 Healthy Leaves</text>
+  <text x="150" y="435" text-anchor="middle" fill="#cbd5e1" font-size="10">10 Diseased Leaves</text>
+
+  <!-- Extreme Card -->
+  <rect x="55" y="480" width="190" height="135" rx="10" fill="url(#inputGrad)" stroke="#ef4444" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="150" y="505" text-anchor="middle" fill="#f8fafc" font-size="13" font-weight="700">Extreme Starvation</text>
+  <text x="150" y="525" text-anchor="middle" fill="#94a3b8" font-size="11">Critical Breakdown Zone</text>
+  <path d="M 75 535 L 225 535" stroke="#334155" stroke-width="1" />
+  <text x="150" y="555" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600">Ratio: 1 : 500</text>
+  <text x="150" y="575" text-anchor="middle" fill="#cbd5e1" font-size="10">1000 Healthy Leaves</text>
+  <text x="150" y="595" text-anchor="middle" fill="#cbd5e1" font-size="10">2 Diseased Leaves</text>
+
+  <!-- Connector from Col 1 to Col 2 -->
+  <path d="M 260 387 L 295 387" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowSky)" />
+
+  <!-- ==================== COLUMN 2: PREPROCESSING ==================== -->
+  <rect x="300" y="100" width="190" height="560" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+  <rect x="300" y="100" width="190" height="42" rx="14" fill="#1e293b" />
+  <text x="395" y="126" text-anchor="middle" fill="#818cf8" font-size="13" font-weight="700">2. PREPROCESSING</text>
+
+  <!-- Step 1 -->
+  <rect x="315" y="180" width="160" height="95" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2" filter="url(#boxShadow)" />
+  <text x="395" y="210" text-anchor="middle" fill="#e0e7ff" font-size="12" font-weight="700">Spatial Resizing</text>
+  <text x="395" y="235" text-anchor="middle" fill="#a5b4fc" font-size="11">Bilinear Interpolation</text>
+  <text x="395" y="255" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="600">224 x 224 x 3</text>
+
+  <!-- Step 2 -->
+  <rect x="315" y="325" width="160" height="95" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2" filter="url(#boxShadow)" />
+  <text x="395" y="355" text-anchor="middle" fill="#e0e7ff" font-size="12" font-weight="700">Normalization</text>
+  <text x="395" y="380" text-anchor="middle" fill="#a5b4fc" font-size="11">Channel Scaling</text>
+  <text x="395" y="400" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="600">Pixel / 255.0 &#8594; [0, 1]</text>
+
+  <!-- Step 3 -->
+  <rect x="315" y="470" width="160" height="110" rx="10" fill="#1e1b4b" stroke="#818cf8" stroke-width="1.2" filter="url(#boxShadow)" />
+  <text x="395" y="500" text-anchor="middle" fill="#e0e7ff" font-size="12" font-weight="700">Cross-Validation</text>
+  <text x="395" y="525" text-anchor="middle" fill="#a5b4fc" font-size="11">5-Fold Stratified CV</text>
+  <text x="395" y="545" text-anchor="middle" fill="#cbd5e1" font-size="10">Preserves Starvation</text>
+  <text x="395" y="565" text-anchor="middle" fill="#34d399" font-size="10" font-weight="600">+ Unseen Test Split</text>
+
+  <path d="M 395 275 L 395 320" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arrowPurple)" />
+  <path d="M 395 420 L 395 465" stroke="#818cf8" stroke-width="1.5" marker-end="url(#arrowPurple)" />
+  <path d="M 490 387 L 525 387" stroke="#818cf8" stroke-width="2" marker-end="url(#arrowPurple)" />
+
+  <!-- ==================== COLUMN 3: BACKBONE ==================== -->
+  <rect x="530" y="100" width="220" height="560" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+  <rect x="530" y="100" width="220" height="42" rx="14" fill="#1e293b" />
+  <text x="640" y="126" text-anchor="middle" fill="#c084fc" font-size="13" font-weight="700">3. DENSENET121</text>
+
+  <rect x="545" y="160" width="190" height="165" rx="10" fill="url(#modelGrad)" stroke="#c084fc" stroke-width="2" filter="url(#boxShadow)" />
+  <text x="640" y="190" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="800">DenseNet121</text>
+  <text x="640" y="210" text-anchor="middle" fill="#e9d5ff" font-size="11">Feature Reuse Backbone</text>
+  <path d="M 565 220 L 715 220" stroke="#581c87" stroke-width="1" />
+  <text x="640" y="240" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; 4 Dense Blocks</text>
+  <text x="640" y="260" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Transition Layers (1-3)</text>
+  <text x="640" y="280" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; 7.03M Parameters</text>
+  <text x="640" y="305" text-anchor="middle" fill="#fbcfe8" font-size="10" font-weight="600">Target: conv5_blk16_concat</text>
+
+  <rect x="545" y="360" width="190" height="95" rx="10" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.2" filter="url(#boxShadow)" />
+  <text x="640" y="390" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Global Average Pooling</text>
+  <text x="640" y="415" text-anchor="middle" fill="#d8b4fe" font-size="11">Spatial Compression</text>
+  <text x="640" y="435" text-anchor="middle" fill="#cbd5e1" font-size="10">(7 &#215; 7 &#215; 1024) &#8594; (1024,)</text>
+
+  <rect x="545" y="490" width="190" height="95" rx="10" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.2" filter="url(#boxShadow)" />
+  <text x="640" y="520" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">Dense Softmax Head</text>
+  <text x="640" y="545" text-anchor="middle" fill="#d8b4fe" font-size="11">Class Output (C = 2)</text>
+  <text x="640" y="565" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="600">P(Diseased) vs P(Healthy)</text>
+
+  <path d="M 640 325 L 640 355" stroke="#c084fc" stroke-width="1.5" marker-end="url(#arrowPurple)" />
+  <path d="M 640 455 L 640 485" stroke="#c084fc" stroke-width="1.5" marker-end="url(#arrowPurple)" />
+
+  <!-- Split Connectors from Col 3 to Col 4 -->
+  <path d="M 735 537 C 755 537, 755 255, 775 255" fill="none" stroke="#f87171" stroke-width="2" marker-end="url(#arrowRed)" />
+  <path d="M 735 537 C 755 537, 755 510, 775 510" fill="none" stroke="#34d399" stroke-width="2" marker-end="url(#arrowEmerald)" />
+
+  <!-- ==================== COLUMN 4: BRANCHING LOSS ==================== -->
+  <rect x="780" y="100" width="230" height="560" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+  <rect x="780" y="100" width="230" height="42" rx="14" fill="#1e293b" />
+  <text x="895" y="126" text-anchor="middle" fill="#f43f5e" font-size="13" font-weight="700">4. LOSS REGIMES</text>
+
+  <!-- Branch 1: Cross Entropy -->
+  <rect x="795" y="170" width="200" height="170" rx="10" fill="url(#cceGrad)" stroke="#f87171" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="895" y="200" text-anchor="middle" fill="#fef2f2" font-size="13" font-weight="700">Branch A: Standard CE</text>
+  <text x="895" y="220" text-anchor="middle" fill="#fca5a5" font-size="11">Categorical Cross-Entropy</text>
+  <path d="M 815 230 L 975 230" stroke="#7f1d1d" stroke-width="1" />
+  <text x="895" y="250" text-anchor="middle" fill="#fecaca" font-size="10">L = - &#931; y_i &#8226; log(p_i)</text>
+  <text x="895" y="275" text-anchor="middle" fill="#fca5a5" font-size="10">&#8226; Uniform Sample Weighting</text>
+  <text x="895" y="295" text-anchor="middle" fill="#fca5a5" font-size="10">&#8226; Vulnerable to Gradient Swamping</text>
+  <text x="895" y="320" text-anchor="middle" fill="#ef4444" font-size="10" font-weight="700">Majority Class Domination</text>
+
+  <!-- Branch 2: Focal Loss -->
+  <rect x="795" y="420" width="200" height="180" rx="10" fill="url(#focalGrad)" stroke="#34d399" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="895" y="450" text-anchor="middle" fill="#ecfdf5" font-size="13" font-weight="700">Branch B: Focal Loss</text>
+  <text x="895" y="470" text-anchor="middle" fill="#a7f3d0" font-size="11">Stress Test (&#947;=2.0, &#945;=0.25)</text>
+  <path d="M 815 480 L 975 480" stroke="#065f46" stroke-width="1" />
+  <text x="895" y="500" text-anchor="middle" fill="#d1fae5" font-size="10">L = - &#945;_t (1 - p_t)^&#947; log(p_t)</text>
+  <text x="895" y="525" text-anchor="middle" fill="#6ee7b7" font-size="10">&#8226; Modulating Factor: (1 - p_t)^2</text>
+  <text x="895" y="545" text-anchor="middle" fill="#6ee7b7" font-size="10">&#8226; Downweights Easy Negatives</text>
+  <text x="895" y="565" text-anchor="middle" fill="#6ee7b7" font-size="10">&#8226; Protects at 1:100 Ratio</text>
+  <text x="895" y="585" text-anchor="middle" fill="#34d399" font-size="10" font-weight="700">Collapses at 1:500 Boundary</text>
+
+  <!-- Connectors from Col 4 to Col 5 -->
+  <path d="M 995 255 L 1035 255" stroke="#f87171" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <path d="M 995 510 L 1035 510" stroke="#34d399" stroke-width="1.5" marker-end="url(#arrowEmerald)" />
+
+  <!-- ==================== COLUMN 5: OUTPUTS ==================== -->
+  <rect x="1040" y="100" width="220" height="560" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+  <rect x="1040" y="100" width="220" height="42" rx="14" fill="#1e293b" />
+  <text x="1150" y="126" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="700">5. DUAL OUTPUTS</text>
+
+  <!-- Metric Card -->
+  <rect x="1055" y="170" width="190" height="170" rx="10" fill="url(#outGrad)" stroke="#60a5fa" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="1150" y="200" text-anchor="middle" fill="#eff6ff" font-size="13" font-weight="700">Quantitative Metrics</text>
+  <text x="1150" y="220" text-anchor="middle" fill="#93c5fd" font-size="11">Statistical Validation</text>
+  <path d="M 1075 230 L 1225 230" stroke="#1e3a8a" stroke-width="1" />
+  <text x="1150" y="255" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Precision &amp; Recall</text>
+  <text x="1150" y="275" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Minority F1-Score</text>
+  <text x="1150" y="295" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Macro F1-Score</text>
+  <text x="1150" y="320" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="700">Failure Boundary Proved</text>
+
+  <!-- Grad-CAM Card -->
+  <rect x="1055" y="420" width="190" height="180" rx="10" fill="url(#outGrad)" stroke="#e879f9" stroke-width="1.5" filter="url(#boxShadow)" />
+  <text x="1150" y="450" text-anchor="middle" fill="#fdf4ff" font-size="13" font-weight="700">Qualitative XAI</text>
+  <text x="1150" y="470" text-anchor="middle" fill="#f0abfc" font-size="11">tf-keras-vis Grad-CAM</text>
+  <path d="M 1075 480 L 1225 480" stroke="#701a75" stroke-width="1" />
+  <text x="1150" y="505" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Spatial Attention Heatmaps</text>
+  <text x="1150" y="525" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Baseline: Pathological Focus</text>
+  <text x="1150" y="545" text-anchor="middle" fill="#cbd5e1" font-size="10">&#8226; Extreme: Background Noise</text>
+  <text x="1150" y="575" text-anchor="middle" fill="#e879f9" font-size="10" font-weight="700">Attention Scattering Proved</text>
+
+</svg>

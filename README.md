@@ -167,7 +167,6 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 ## 🛠️ Repository Structure
 ```
 ├── milestone2_deliverables/        # Milestone 2 submission package
-│   ├── Milestone_2_Document.md    # Complete 6-section brief for single PDF submission
 │   ├── architecture_diagram.svg    # Standalone high-resolution vector SVG flowchart
 │   ├── architecture_diagram.md     # Mermaid vector flowchart
 │   ├── mathematical_evaluation_plan.md # Metric derivations & 5-fold CV protocol
@@ -177,6 +176,7 @@ Using `tf-keras-vis`, we visually map how the network's internal attention break
 ├── gradcam_explainability.py       # Grad-CAM spatial attention visualizer (tf-keras-vis)
 ├── test_prediction.py              # Interactive single-image model prediction test script
 ├── requirements.txt                # Python environment dependencies
+├── LICENSE                         # MIT Open-Source License
 ├── .gitignore                      # Version control ignore rules (data/weights/drafts)
 └── README.md                       # Master repository documentation
 ```
@@ -234,7 +234,10 @@ python test_prediction.py "Test_Set/Diseased/20211205_160445.jpg"
 
 ---
 
-## 📚 Peer-Reviewed Literature & Milestone Documentation
+## 📚 Peer-Reviewed Literature & Methodology Documentation
 
-For the full annotated bibliography of 15 peer-reviewed sources across **IEEE Xplore**, **ACM Digital Library**, and **Springer Link**, as well as complete mathematical derivations, refer to the milestone submission document:
-- [`milestone2_deliverables/Milestone_2_Document.md`](milestone2_deliverables/Milestone_2_Document.md)
+Full mathematical derivations, 5-fold stratified cross-validation plans, and architectural justifications are documented in:
+- [`milestone2_deliverables/mathematical_evaluation_plan.md`](milestone2_deliverables/mathematical_evaluation_plan.md)
+- [`milestone2_deliverables/architecture_diagram.md`](milestone2_deliverables/architecture_diagram.md)
+
+*(The formal 6-section Milestone 2 report and 15-source annotated bibliography are submitted as a single PDF directly via the Horizon Campus LMS portal).*

@@ -58,51 +58,69 @@ The complete end-to-end research methodology is visually modeled below:
 
 ```mermaid
 flowchart TD
-    classDef inputStyle fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc;
-    classDef prepStyle fill:#1e1b4b,stroke:#818cf8,stroke-width:2px,color:#f8fafc;
-    classDef modelStyle fill:#312e81,stroke:#c084fc,stroke-width:3px,color:#ffffff,font-weight:bold;
-    classDef branch1Style fill:#450a0a,stroke:#f87171,stroke-width:2px,color:#fef2f2;
-    classDef branch2Style fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#ecfdf5;
-    classDef outStyle fill:#172554,stroke:#60a5fa,stroke-width:2px,color:#eff6ff;
-
-    subgraph Stage1 ["Stage 1: Multi-Regime Data Ingestion"]
-        D1["Baseline Dataset<br/>(1:1 Natural Distribution: 1000 H / 995 D)"]:::inputStyle
-        D2["Severe Starvation Dataset<br/>(1:100 Ratio: 1000 H / 10 D)"]:::inputStyle
-        D3["Extreme Starvation Dataset<br/>(1:500 Ratio: 1000 H / 2 D)"]:::inputStyle
+    subgraph S1 ["Stage 1: Multi-Regime Data Ingestion"]
+        D1["Baseline Dataset (1:1 Natural Ratio)
+        1,000 Healthy / 995 Diseased"]
+        D2["Severe Starvation Dataset (1:100 Ratio)
+        1,000 Healthy / 10 Diseased"]
+        D3["Extreme Starvation Dataset (1:500 Ratio)
+        1,000 Healthy / 2 Diseased"]
     end
 
-    subgraph Stage2 ["Stage 2: Deterministic Preprocessing Pipeline"]
-        P1["Bilinear Spatial Resizing: 224 x 224 x 3"]:::prepStyle
-        P2["Pixel Intensity Normalization: [0.0, 1.0]"]:::prepStyle
-        P3["Stratified 5-Fold Cross-Validation Partitioning"]:::prepStyle
-        D1 --> P1
-        D2 --> P1
-        D3 --> P1
-        P1 --> P2 --> P3
+    subgraph S2 ["Stage 2: Deterministic Preprocessing & Partitioning"]
+        P1["Bilinear Spatial Resizing: 224 x 224 x 3"]
+        P2["Pixel Intensity Normalization: [0.0, 1.0]
+        Formula: pixel_norm = pixel / 255.0"]
+        P3["Dual Partitioning Strategy:
+        • Stratified 5-Fold Cross-Validation (Training / Val)
+        • Independent Test Holdout (100 Healthy + 100 Diseased)"]
     end
 
-    subgraph Stage3 ["Stage 3: DenseNet121 Feature Reuse Extractor"]
-        M1["Pre-trained DenseNet121 Convolutional Backbone<br/>(4 Dense Blocks with Direct Layer Concatenation)"]:::modelStyle
-        M2["Global Average Pooling 2D (1024-dim Vector)"]:::modelStyle
-        M3["Dense Softmax Classification Head (C = 2 Classes)"]:::modelStyle
-        P3 --> M1 --> M2 --> M3
+    subgraph S3 ["Stage 3: DenseNet121 Feature Reuse Extractor"]
+        M1["Pre-trained DenseNet121 Backbone
+        (4 Dense Blocks with Direct Layer Concatenation)"]
+        M2["Global Average Pooling 2D
+        (1024-dimensional Feature Vector)"]
+        M2B["Dropout Regularization
+        (Rate p = 0.2)"]
+        M3["Dense Softmax Classification Head
+        (C = 2 Diagnostic Classes)"]
     end
 
-    subgraph Stage4 ["Stage 4: Branching Optimization Regimes"]
-        B1["Branch A: Categorical Cross-Entropy (Baseline)<br/>L_CE = -&Sigma; y_i log(p_i)<br/>&bull; Vulnerable to Majority Gradient Swamping"]:::branch1Style
-        B2["Branch B: Focal Loss Stress Test (&gamma;=2.0, &alpha;=0.25)<br/>L_FL = -&alpha;_t (1 - p_t)^&gamma; log(p_t)<br/>&bull; Downweights Easy Healthy Leaves"]:::branch2Style
-        M3 --> B1
-        M3 --> B2
+    subgraph S4 ["Stage 4: Branching Optimization Regimes"]
+        B1["Branch A: Categorical Cross-Entropy (Baseline)
+        L_CE = -sum( y_i * log(p_i) )
+        • Vulnerable to Majority Gradient Swamping"]
+        B2["Branch B: Focal Loss Stress Test (gamma=2.0, alpha=0.25)
+        L_FL = -alpha_t * (1 - p_t)^gamma * log(p_t)
+        • Dynamically Downweights Easy Healthy Leaves"]
     end
 
-    subgraph Stage5 ["Stage 5: Dual Evaluation & Visual Explainability"]
-        O1["Quantitative Metrics Suite<br/>&bull; Precision, Recall, Minority F1, Macro F1<br/>&bull; Paired t-tests & Wilcoxon Signed-Rank Tests"]:::outStyle
-        O2["Qualitative XAI (tf-keras-vis Grad-CAM)<br/>&bull; Target Layer: conv5_block16_concat<br/>&bull; Lesion Localization vs Attention Scattering"]:::outStyle
-        B1 --> O1
-        B2 --> O1
-        B1 --> O2
-        B2 --> O2
+    subgraph S5 ["Stage 5: Dual Evaluation & Forensic Explainability"]
+        O1["Quantitative Statistical Suite
+        • Precision, Recall, Minority F1, Macro F1
+        • Stratified 5-Fold CV Variance & Confusion Matrix
+        • Paired t-tests & Wilcoxon Signed-Rank Tests (p < 0.05)"]
+        O2["Qualitative Forensic XAI (tf-keras-vis Grad-CAM)
+        • Target Feature Layer: conv5_block16_concat
+        • True Lesion Localization vs Specular Noise Overfitting"]
     end
+
+    D1 --> P1
+    D2 --> P1
+    D3 --> P1
+    P1 --> P2
+    P2 --> P3
+    P3 --> M1
+    M1 --> M2
+    M2 --> M2B
+    M2B --> M3
+    M3 --> B1
+    M3 --> B2
+    B1 --> O1
+    B2 --> O1
+    B1 --> O2
+    B2 --> O2
 ```
 
 ---

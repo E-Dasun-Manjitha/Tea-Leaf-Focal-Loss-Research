@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Architecture Pipeline - Mermaid Vector Render</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #1e293b;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #0f172a;
+    }
+    .diagram-container {
+      background: #ffffff;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      max-width: 95vw;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h2>End-to-End System Architecture (Milestone 2 Deliverable)</h2>
+  <div class="diagram-container">
+    <pre class="mermaid" id="arch-mermaid">
+flowchart TD
+    subgraph S1 ["Stage 1: Multi-Regime Data Ingestion"]
+        D1["Baseline Dataset (1:1 Natural Ratio)
+        1,000 Healthy / 995 Diseased"]
+        D2["Severe Starvation Dataset (1:100 Ratio)
+        1,000 Healthy / 10 Diseased"]
+        D3["Extreme Starvation Dataset (1:500 Ratio)
+        1,000 Healthy / 2 Diseased"]
+    end
+
+    subgraph S2 ["Stage 2: Deterministic Preprocessing & Partitioning"]
+        P1["Bilinear Spatial Resizing: 224 x 224 x 3"]
+        P2["Pixel Intensity Normalization: [0.0, 1.0]
+        Formula: pixel_norm = pixel / 255.0"]
+        P3["Dual Partitioning Strategy:
+        • Stratified 5-Fold Cross-Validation (Training / Val)
+        • Independent Test Holdout (100 Healthy + 100 Diseased)"]
+    end
+
+    subgraph S3 ["Stage 3: DenseNet121 Feature Reuse Extractor"]
+        M1["Pre-trained DenseNet121 Backbone
+        (4 Dense Blocks with Direct Layer Concatenation)"]
+        M2["Global Average Pooling 2D
+        (1024-dimensional Feature Vector)"]
+        M2B["Dropout Regularization
+        (Rate p = 0.2)"]
+        M3["Dense Softmax Classification Head
+        (C = 2 Diagnostic Classes)"]
+    end
+
+    subgraph S4 ["Stage 4: Branching Optimization Regimes"]
+        B1["Branch A: Categorical Cross-Entropy (Baseline)
+        L_CE = -sum( y_i * log(p_i) )
+        • Vulnerable to Majority Gradient Swamping"]
+        B2["Branch B: Focal Loss Stress Test (gamma=2.0, alpha=0.25)
+        L_FL = -alpha_t * (1 - p_t)^gamma * log(p_t)
+        • Dynamically Downweights Easy Healthy Leaves"]
+    end
+
+    subgraph S5 ["Stage 5: Dual Evaluation & Forensic Explainability"]
+        O1["Quantitative Statistical Suite
+        • Precision, Recall, Minority F1, Macro F1
+        • Stratified 5-Fold CV Variance & Confusion Matrix
+        • Paired t-tests & Wilcoxon Signed-Rank Tests (p < 0.05)"]
+        O2["Qualitative Forensic XAI (tf-keras-vis Grad-CAM)
+        • Target Feature Layer: conv5_block16_concat
+        • True Lesion Localization vs Specular Noise Overfitting"]
+    end
+
+    D1 --> P1
+    D2 --> P1
+    D3 --> P1
+    P1 --> P2
+    P2 --> P3
+    P3 --> M1
+    M1 --> M2
+    M2 --> M2B
+    M2B --> M3
+    M3 --> B1
+    M3 --> B2
+    B1 --> O1
+    B2 --> O1
+    B1 --> O2
+    B2 --> O2
+    </pre>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'neutral',
+      flowchart: {
+        curve: 'linear',
+        nodeSpacing: 40,
+        rankSpacing: 45
+      }
+    });
+  </script>
+</body>
+</html>
